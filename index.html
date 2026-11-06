@@ -14,9 +14,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=DM+Sans:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css" />
+
 </head>
 
 <body class="invite-locked">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.add('night-mode');
+
+            const btn = document.getElementById('ambienceToggle');
+            if (btn) {
+                btn.textContent = '🌙';
+            }
+        });
+    </script>
 
     <!-- Interactive Particles & Rose Petals Canvas -->
     <canvas id="petalsCanvas" aria-hidden="true"></canvas>
@@ -201,7 +212,7 @@
         <!-- Welcome Message -->
         <section class="hindi-welcome section" aria-label="Wedding invitation welcome" style="background-color: #4A1428;">
             <div class="hindi-welcome-inner reveal" style="background-color: #4A1428;">
-                <h2>सहकुटुंब सस्नेह निमंत्रण:</h2>
+                <h2 style="color: #faec6aec;">सहकुटुंब सस्नेह निमंत्रण:</h2>
                 <p style="color: #Ffffff;">
                     परमेश्वराच्या कृपाशीर्वादाने आणि प्रभू श्रीरामांच्या मंगलमय आशीर्वादाने आयोजित या शुभविवाह सोहळ्यास आपण सहकुटुंब उपस्थित राहून वधू-वरांस शुभाशीर्वाद द्यावेत, ही सस्नेह विनंती.
                 </p>
@@ -212,9 +223,9 @@
         <section class="section events-section" id="karyakram" style="background-color: #4A1428;">
             <div class="section-inner">
                 <div class="section-heading reveal">
-                    <div class="overline">The celebrations</div>
-                    <h2>The Wedding Celebrations</h2>
-                    <p>१० डिसेंबर २०२६ रोजी आयोजित मंगलमय विवाह सोहळ्यास आपण सहकुटुंब उपस्थित राहून वधू-वरांस शुभाशीर्वाद द्यावेत, ही सस्नेह विनंती.</p>
+                    <div class="overline" style="color: #faec6aec;">The celebrations</div>
+                    <h2 style="color: #Ffffff;">The Wedding Celebrations</h2>
+                    <p style="color: #Ffffff;">१० डिसेंबर २०२६ रोजी आयोजित मंगलमय विवाह सोहळ्यास आपण सहकुटुंब उपस्थित राहून वधू-वरांस शुभाशीर्वाद द्यावेत, ही सस्नेह विनंती.</p>
                 </div>
 
                 <div class="celebration-poster-wrap reveal tilt-card">
@@ -228,9 +239,9 @@
                     <div class="section-inner">
                         <div class="section-heading reveal">
                             <div class="overline"></div>
-                            <p>॥ स्नेहबंध ॥</p>
-                            <h2>आमची सुंदर जोडी</h2>
-                            <p>दोन्ही कुटुंबीयांच्या प्रेम, आपुलकी आणि आशीर्वादाच्या साक्षीने...</p>
+                            <p style="color: #Ffffff;">॥ स्नेहबंध ॥</p>
+                            <h2 style="color: #faec6aec;">आमची सुंदर जोडी</h2>
+                            <p style="color: #Ffffff;">दोन्ही कुटुंबीयांच्या प्रेम, आपुलकी आणि आशीर्वादाच्या साक्षीने...</p>
                         </div>
 
                         <div class="family-card reveal" style="background-color: #4A1428;">
@@ -269,8 +280,8 @@
                                     <strong class="wedding-card-title" style="color: #eedd9b;">॥ शुभविवाह मुहूर्त ॥</strong>
 
                                     <div class="muhurt-details">
-                                        <p><span>विवाह दिनांक :</span> १० डिसेंबर २०२६</p>
-                                        <p><span>विवाह वेळ :</span> दुपारी १२.२० वाजता</p>
+                                        <p><span></span>विवाह दिनांक : १० डिसेंबर २०२६</p>
+                                        <p><span></span> विवाह वेळ : दुपारी १२.२० वाजता</p>
                                     </div>
 
                                     <div class="blessing-space">
@@ -483,8 +494,8 @@
                     <article class="card-tile reveal tilt-card">
                         <div class="shine-fx"></div>
                         <div class="card-tile-head">
-                            <h3 style="color: #F5D76E;">शुभ विवाह निमंत्रण पत्र</h3>
-                            <span class="h3" style="color: #F5D76E;">सुप्रिया  &amp; गौरव</span>
+                            <h3>शुभ विवाह निमंत्रण पत्र</h3>
+                            <span>सुप्रिया  &amp; गौरव</span>
                         </div>
                         <button class="card-image-button" type="button" onclick="openCard('gold')" aria-label="विवाह कार्ड बड़ा देखें">
               <img id="goldCard" src="./assets/images/wd.jpg" alt="Shubh Vivah HD Invitation Card" loading="lazy"/>
