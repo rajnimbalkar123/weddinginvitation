@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta name="theme-color" content="#45101f" />
+    <meta name="description" content="A royal, cinematic, and interactive wedding invitation for Amit Tiwari and Shivangi Tiwari." />
+    <title>Supriya Weds Gaurav | भव्य शुभ विवाह निमंत्रण</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=DM+Sans:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="invite-locked">
+
+    <!-- Interactive Particles & Rose Petals Canvas -->
+    <canvas id="petalsCanvas" aria-hidden="true"></canvas>
+
+    <!-- Interactive 3D Envelope Screen with Diya Lighting -->
+    <div class="opening-screen" id="openingScreen" role="dialog" aria-modal="true" aria-label="शुभ विवाह निमंत्रण पत्र">
+        <div class="opening-content">
+
+            <!-- Interactive Diyas (Click to Light Up) -->
+            <div class="diya-wrapper">
+                <div class="diya left-diya unlit" id="leftDiya" onclick="lightDiya('leftDiya')" title="दीप प्रज्वलित करें">
+                    <div class="flame"></div>
+                    <div class="diya-bowl">🪔</div>
+                    <!-- <span class="diya-text">दीप जलाएं</span> -->
+                </div>
+                <div class="opening-blessing">॥ श्री गणेशाय नमः ॥</div>
+                <div class="diya right-diya unlit" id="rightDiya" onclick="lightDiya('rightDiya')" title="दीप प्रज्वलित करें">
+                    <div class="flame"></div>
+                    <div class="diya-bowl">🪔</div>
+                    <!-- <span class="diya-text">दीप जलाएं</span> -->
+                </div>
+            </div>
+
+            <div class="envelope-scene" id="envelopeOpenCard" role="button" tabindex="0" aria-label="निमंत्रण पत्र खोलें">
+                <div class="envelope-back"></div>
+                <div class="envelope-letter">
+                    <div class="mini-om">卐</div>
+                    <strong>Wedding Invitation</strong>
+                    <span class="letter-couple">सुप्रिया <em>Weds</em> गौरव</span>
+                    <span class="letter-date">10 December 2026</span>
+                    <span class="letter-open-hint">✦ Tap to open ✦</span>
+                </div>
+                <div class="envelope-front"></div>
+                <div class="envelope-flap"></div>
+                <div class="envelope-seal">卐</div>
+            </div>
+            <h1 class="opening-title">The Invitation Card</h1>
+            <p class="opening-subtitle">"सस्नेह निमंत्रण! सहकुटुंब, सहपरिवार सादर आमंत्रण आहे."</p>
+            <button class="open-invite-btn" id="openInviteButton" type="button">
+        Open Invitation <span aria-hidden="true">✧</span>
+      </button>
+        </div>
+    </div>
+
+    <a class="skip" href="#main">Skip to main content</a>
+
+    <!-- Top Sticky Navigation -->
+    <nav class="topnav" aria-label="Main Navigation">
+        <div class="navinner">
+            <a class="brand" href="#home" aria-label="मुखपृष्ठ">
+                <span class="brandmark">ॐ</span>
+                <span class="brandtext">शुभविवाह निमंत्रण </br>सुप्रिया व गौरव यांचा शुभविवाह</span>
+            </a>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle Menu" aria-expanded="false" onclick="toggleMobileNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+            <div class="navlinks" id="navLinks">
+                <a href="#home" onclick="closeMobileNav()">Home</a>
+                <a href="#countdown" onclick="closeMobileNav()">Countdown</a>
+                <a href="#curtain-stage" onclick="closeMobileNav()">Moments</a>
+                <a href="#karyakram" onclick="closeMobileNav()">Celebrations</a>
+                <a href="#parivar" onclick="closeMobileNav()">The Couple</a>
+                <a href="#cards" onclick="closeMobileNav()">Cards</a>
+                <a href="#blessings" onclick="closeMobileNav()">Wishes</a>
+                <a href="#wedding-location" onclick="closeMobileNav()">Venue Map</a>
+            </div>
+            <div class="navtools">
+                <button class="iconbtn" id="ambienceToggle" type="button" onclick="toggleAmbience()" title="Toggle Day/Night Mode">
+          ☀️
+        </button>
+                <button class="iconbtn" type="button" onclick="shareInvite()" aria-label="Share Invitation" title="Share">
+          <svg fill="none" height="18" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="18">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <path d="m8.7 10.7 6.6-4M8.7 13.3l6.6 4"></path>
+          </svg>
+        </button>
+                <button class="iconbtn" type="button" onclick="window.print()" aria-label="Print Page" title="Print">
+          <svg fill="none" height="18" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="18">
+            <path d="M7 8V3h10v5M7 17H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-3"></path>
+            <path d="M7 14h10v7H7zM18 11h.01"></path>
+          </svg>
+        </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Audio Source -->
+    <audio id="ganeshMantra" loop preload="none">
+    <source src="./assets/audio/ganesh-arti.mp3" type="audio/mpeg"/>
+  </audio>
+
+    <!-- Hero Section -->
+    <header class="hero poster-hero" id="home">
+        <div class="poster-hero-glow" aria-hidden="true"></div>
+        <div class="poster-hero-inner">
+            <p class="opening-blessing">॥ श्री गणेशाय नमः ॥</p>
+            <div class="poster-hero-copy">
+                <div class="poster-kicker"></div>
+                <h6>✦ आपली उपस्थिती आमच्यासाठी अमूल्य आहे ✦</h6>
+                <h1> सुप्रिया<em>卐</em> गौरव</h1>
+                <div class="poster-date"><span aria-hidden="true">✧</span> 10 December 2026 <span aria-hidden="true">✧</span></div>
+            </div>
+
+            <figure class="poster-hero-frame tilt-card" id="heroTiltCard">
+                <div class="shine-fx"></div>
+                <img src="./assets/images/wd.jpg" alt="Amit and Shivangi Wedding Invitation" fetchpriority="high" />
+            </figure>
+        </div>
+        <div class="scrollhint">Explore More ↓</div>
+    </header>
+
+    <main id="main">
+
+        <!-- Live Wedding Countdown Section -->
+        <section class="countdown-section" id="countdown" aria-label="शुभ विवाह उल्टी गिनती" style="background-color: #5a1437d3;">
+            <div class="countdown-inner reveal">
+                <div class="countdown-tag" style="color: #E8C7A0;">शुभविवाह मुहुर्त</div>
+                <h3 style="color: #E8C7A0;">Wedding Starts In</h3>
+                <div class="timer-display" id="weddingTimer">
+                    <div class="time-block">
+                        <span class="time-num" id="दिवस">00</span>
+                        <span class="time-label">दिवस</span>
+                    </div>
+                    <div class="time-sep">:</div>
+                    <div class="time-block">
+                        <span class="time-num" id="तास">00</span>
+                        <span class="time-label">तास</span>
+                    </div>
+                    <div class="time-sep">:</div>
+                    <div class="time-block">
+                        <span class="time-num" id="मिनिटे">00</span>
+                        <span class="time-label">मिनिटे</span>
+                    </div>
+                    <div class="time-sep">:</div>
+                    <div class="time-block">
+                        <span class="time-num" id="सेकंद">00</span>
+                        <span class="time-label">सेकंद</span>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        </section>
+
+        <!-- Parallax 3D Curtain Stage Section -->
+        <section class="stage-section" id="curtain-stage">
+            <div class="curtain curtain-left" id="curtainLeft"></div>
+            <div class="curtain curtain-right" id="curtainRight"></div>
+            <div class="stage-content reveal">
+                <span class="stage-tag"></span>
+
+                <h2 style="color: #Ffffff;">✦ सदैव सोबत, जन्मोजन्मीची साथ ✦</h2>
+                <h4>"आपुलकीचे बंध, संस्कारांची वीण आणि वडीलधाऱ्यांच्या आशीर्वादाचा वर्षाव... हीच आयुष्याची खरी कमाई!"</h4>
+                <div class="stage-avatar-wrap tilt-card">
+                    <img src="./assets/images/couple-cartoon.png" alt="Amit and Shivangi Couple Art" class="stage-avatar" />
+                </div>
+                <p class="stage-quote">"प्रेमाच्या बंधनात, विश्वासाच्या साथीने नव्या आयुष्याची मंगलमय सुरुवात!"</p>
+            </div>
+        </section>
+
+        <!-- Shlok Section -->
+        <section class="shubh-section" aria-label="मांगलिक श्लोक">
+            <div class="shubh-inner reveal">
+                <div class="shubh-ornament">卐 &nbsp; ॐ &nbsp; 卐</div>
+                <h3 class="shubh-mantra">॥ श्री निष्णाई देवी प्रसन्न ॥</h3>
+                <div class="shubh-divider"><span></span>✦<span></span></div>
+                <p class="shubh-verse">
+                    शुभमंगलाच्या या क्षणी, करू चरणी वंदन।
+
+                    <br/> श्री निष्णाई मातेच्या कृपेने, सफल होवो मंगलबंधन॥
+                </p>
+            </div>
+        </section>
+
+        <!-- Welcome Message -->
+        <section class="hindi-welcome section" aria-label="Wedding invitation welcome" style="background-color: #4A1428;">
+            <div class="hindi-welcome-inner reveal" style="background-color: #4A1428;">
+                <h2>सहकुटुंब सस्नेह निमंत्रण:</h2>
+                <p style="color: #Ffffff;">
+                    परमेश्वराच्या कृपाशीर्वादाने आणि प्रभू श्रीरामांच्या मंगलमय आशीर्वादाने आयोजित या शुभविवाह सोहळ्यास आपण सहकुटुंब उपस्थित राहून वधू-वरांस शुभाशीर्वाद द्यावेत, ही सस्नेह विनंती.
+                </p>
+            </div>
+        </section>
+
+        <!-- Events & Itinerary -->
+        <section class="section events-section" id="karyakram" style="background-color: #4A1428;">
+            <div class="section-inner">
+                <div class="section-heading reveal">
+                    <div class="overline">The celebrations</div>
+                    <h2>The Wedding Celebrations</h2>
+                    <p>१० डिसेंबर २०२६ रोजी आयोजित मंगलमय विवाह सोहळ्यास आपण सहकुटुंब उपस्थित राहून वधू-वरांस शुभाशीर्वाद द्यावेत, ही सस्नेह विनंती.</p>
+                </div>
+
+                <div class="celebration-poster-wrap reveal tilt-card">
+                    <div class="shine-fx"></div>
+                    <img class="celebration-poster-art" src="./assets/images/plan.png" alt="Supriya Weds Gaurav_10 dec 2026" loading="lazy">
+                </div>
+
+
+                <!-- Couple & Families Section -->
+                <section class="section family-section" id="parivar">
+                    <div class="section-inner">
+                        <div class="section-heading reveal">
+                            <div class="overline"></div>
+                            <p>॥ स्नेहबंध ॥</p>
+                            <h2>आमची सुंदर जोडी</h2>
+                            <p>दोन्ही कुटुंबीयांच्या प्रेम, आपुलकी आणि आशीर्वादाच्या साक्षीने...</p>
+                        </div>
+
+                        <div class="family-card reveal" style="background-color: #4A1428;">
+                            <div class="family-names">
+                                <!-- Groom -->
+                                <div class="person" style="background-color: #4A1428;">
+                                    <span class="person-role">वधू</span>
+                                    <div class="person-emblem" aria-hidden="true">✦</div>
+                                    <h3>चि.सौ.का. सुप्रिया</h3>
+                                    <p>
+                                        <strong style="color: #E8C7A0;">कै.गुलाबराव रामचंद्र निंबाळकर यांची नात</strong> <br/>
+                                        <strong style="color: #E8C7A0;">सौ.सुरेखा व श्री.अनिल गुलाबराव निंबाळकर यांची द्वितीय सुकन्या <br/> आदर्की खुर्द, ता-फलटण, जि-सातारा </strong>
+                                    </p>
+                                </div>
+
+                                <div class="ornament" aria-hidden="true">卐</div>
+
+                                <!-- Bride -->
+                                <div class="person" style="background-color: #4A1428;">
+                                    <span class="person-role">वर</span>
+                                    <div class="person-emblem" aria-hidden="true">❀</div>
+                                    <h3>चि.गौरव</h3>
+                                    <p>
+                                        <strong style="color: #E8C7A0;">सौ.जयश्री व श्री.कृष्णदेव निवृत्ती शिंदे यांचे द्वितीय चिरंजीव<br/>
+                                        मु.पोस्ट तांदुळवाडी ता-माळशिरस, जि-सोलापूर </strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="family-separator" style="background-color:#4A1428;"></div>
+                        <div class="family-members-grid" style="background-color: #4A1428;">
+                            <div class="wedding-info-grid" style="background-color: #4A1428;">
+
+                                <!-- BOX 1 : VIVAH MUHURT -->
+                                <div class="wedding-info-card" style="background-color: #4A1428;">
+                                    <strong class="wedding-card-title" style="color: #eedd9b;">॥ शुभविवाह मुहूर्त ॥</strong>
+
+                                    <div class="muhurt-details">
+                                        <p><span>विवाह दिनांक :</span> १० डिसेंबर २०२६</p>
+                                        <p><span>विवाह वेळ :</span> दुपारी १२.२० वाजता</p>
+                                    </div>
+
+                                    <div class="blessing-space">
+                                        <strong style="color: #eedd9b;">॥ आशीर्वाद ॥</strong>
+                                        <p>शिवरायांच्या महाराष्ट्राची परंपरा आणि मराठमोळ्या संस्कृतीचा वारसा जपत, दोन कुटुंबाचा स्नेहबंधनाचा हा मंगल सोहळा आयोजोत केला आहे. या शुभप्रसंगी आपण उपस्थित राहून वधू-वरांस शुभाशीर्वाद द्यावेत, ही आग्रहाची विंनती.</p>
+                                        <div class="blessing-lines"></div>
+                                    </div>
+                                </div>
+
+
+                                <!-- BOX 2 : AAPLE NAMRA -->
+                                <div class="wedding-info-card">
+                                    <strong class="wedding-card-title" style="color: #eedd9b;">॥ आपले नम्र ॥</strong>
+
+                                    <div class="wedding-name-list">
+                                        <span>सौ. सुरेखा अनिल निंबाळकर </span>
+                                        <span>श्री. अनिल गुलाबराव निंबाळकर  </span>
+                                        <span>सौ. वैशाली सुनिल निंबाळकर</span>
+                                        <span>श्री. सुनिल गुलाबराव निंबाळकर</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- BOX 3 : FAMILY & RELATIVES -->
+                        <div class="wedding-info-card relatives-card" style="background-color: #4A1428;">
+                            <strong class="wedding-card-title" style="color: #eedd9b;">॥ आप्तेष्ट व परिवार ॥</strong>
+                            <span style="color: #e4d9ae;font-size: small;">श्रीमती. चतुरा यशवंत निंबाळकर</span>
+                            <div class="relatives-names">
+
+                                <div class="relatives-column">
+                                    <span>सौ.विद्या व श्री.दत्तात्रय यशवंत निंबाळकर</span>
+                                    <span>सौ.सीमा व श्री.नितीन निंबाळकर</span>
+                                    <span>सौ.पल्लवी व श्री.किरण विनायक निंबाळकर</span>
+                                    <span>सौ.प्रियांका व श्री.विनोद दत्तात्रय निंबाळकर</span>
+                                    <span>सौ.ताराबाई व श्री.शिवाजी नानासो निंबाळकर </span>
+                                    <span>सौ.कुसुम व  श्री.मुरलीधर भाऊसो निंबाळकर </span>
+                                    <span>सौ.कांता व  श्री.प्रभाकर भाऊसो निंबाळकर </span>
+                                    <span>सौ.अंजना व  श्री.हनुमंत चंदरराव निंबाळकर </span>
+                                    <span>सौ.मीना व  श्री.महादेव बाबुराव निंबाळकर </span>
+                                    <span>सौ.राणी  व  श्री.प्रभाकर नारायण निंबाळकर </span>
+                                    <span>सौ.शांताबाई  व  श्री.हनुमंत नानासो निंबाळकर </span>
+                                    <span>सौ.सुरेखा व  श्री.जगन्नाथ कृष्णा निंबाळकर </span>
+                                    <span>सौ.कल्पना  व  श्री.जयप्रकाश आनंदराव देशमुख </span>
+                                    <span>सौ.अल्का व  श्री.शशिकांत हनुमंत निंबाळकर </span>
+                                    <span>सौ.शीतल  व  श्री.लखन किसन निंबाळकर </span>
+                                    <span>सौ.रुतुजा व  श्री.अतुल दत्तात्रय निंबाळकर </span>
+                                    <span>श्री.महादेव सदाशिव निंबाळकर </span>
+
+                                </div>
+
+                                <div class="relatives-column">
+                                    <span>सौ. कौसल्या व श्री. किसन चंदरराव निंबाळकर</span>
+                                    <span>सौ.रंजना  व  श्री.अंकुश रावसाहेब निंबाळकर </span>
+                                    <span>सौ.उज्वला  व  श्री.शंकरराव निंबाळकर </span>
+                                    <span>सौ.अर्चना  व  श्री.मधुकर सदाशिव निंबाळकर </span>
+                                    <span>सौ.सोनाली  व  श्री.रामभाऊ रावसाहेब निंबाळकर </span>
+                                    <span>सौ.हेमा व  श्री.लक्ष्मण रावसाहेब निंबाळकर </span>
+                                    <span>सौ.संगीता  व  श्री.दिलीप जगदेवराव निंबाळकर </span>
+                                    <span>सौ.शालन  व  श्री.सुभाष आनंदराव निंबाळकर </span>
+                                    <span>सौ.मंदाकिनी  व  श्री.कालिदास रामचंद्र निंबाळकर  </span>
+                                    <span>सौ.मंगल  व  श्री.रमेश खंडेराव निंबाळकर </span>
+                                    <span>सौ.पूजा व  श्री.हिम्मत हनुमंत निंबाळकर </span>
+                                    <span>सौ.प्रियांका व  श्री.विक्रम दत्तात्रय बर्गे  </span>
+                                    <span>श्री.गणेश विठ्ठल मोहिते (मामा) </span>
+                                    <span>सौ.सारिका व  श्री.संतोष उत्तम मोहिते(मामा) </span>
+                                    <span>सौ.शालन रामदास भोसले(आत्या)</span>
+                                    <span>सौ.रंजना आण्णा यादव(मावशी)</span>
+                                    <span>सौ.मीरा विनोद निकम (मावशी)  </span>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+                <!-- BOX 2 : SWAGATOTSUK -->
+                <div class="family-member-card" style="background-color: #4A1428;">
+                    <strong class="family-card-title" style="color: #F5D76E;">॥ स्वागतोत्सुक ॥</strong>
+
+                    <div class="welcome-names">
+
+                        <div class="name-column">
+                            <span>श्री. प्रभाकर भाऊसो निंबाळकर</span>
+                            <span>श्री. सूर्यकांत शिवाजी निंबाळकर</span>
+                            <span>श्री. हनुमंत चंदराव निंबाळकर</span>
+                            <span>श्री. सचिन हनमंत निंबाळकर </span>
+                            <span>श्री. दत्तात्रय उत्तम निंबाळकर</span>
+                            <span>श्री. पृथ्वीराजे मुरलीधर निंबाळकर </span>
+                        </div>
+
+                        <div class="name-column">
+                            <span>श्री. महेश अंकुश निंबाळकर</span>
+                            <span>श्री. विलास सदाशिव निंबाळकर </span>
+                            <span>श्री. सचिन तानाजी निंबाळकर </span>
+                            <span>श्री. नितीन सुभाष देशमुख </span>
+                            <span>श्री. महेश दिलीप निंबाळकर </span>
+                            <span>श्री. प्रशांत धनाजी मोहिते</span>
+                        </div>
+
+                    </div>
+                </div>
+        </section>
+
+
+        <!-- BOX 1 : SHUBHECHCHUK -->
+        <!-- BOX 1 : KARYAVAHK -->
+
+        <div class="family-member-card" style="background-color: #4A1428;">
+
+            <strong class="family-card-title" style="color: #F5D76E;">॥ कार्यवाहक ॥</strong>
+
+            <div class="welcome-names">
+
+                <div class="name-column">
+                    <span>श्री. अथर्व नितीन निंबाळकर </span>
+                    <span>श्री. मंथन किरण निंबाळकर</span>
+                    <span>श्री. सचिन शंकरराव निंबाळकर</span>
+                    <span>श्री. मंगेश शंकरराव निंबाळकर</span>
+                    <span>श्री. मच्छिंद्र तानाजी निंबाळकर</span>
+                    <span>श्री. पोपट यशवंत निंबाळकर</span>
+                    <span>श्री. अनुप उदय निंबाळकर </span>
+                    <span>श्री. शेखर दत्तात्रय निंबाळकर </span>
+                    <span>श्री. विनम्र विलास निंबाळकर</span>
+                    <span>श्री. हर्षल शशिकांत निंबाळकर</span>
+                </div>
+
+                <div class="name-column">
+                    <span>श्री. सखाराम उत्तम निंबाळकर </span>
+                    <span>श्री. निखील लक्ष्मण निंबाळकर</span>
+                    <span>श्री. शहाजी शिंदे </span>
+                    <span>श्री. विनोद घोरपडे</span>
+                    <span>श्री. सोहम महेश शिंदे </span>
+                    <span>श्री. प्रज्वल हिम्मत निंबाळकर </span>
+                    <span>श्री. अक्षय आण्णा यादव </span>
+                    <span>श्री. अजिंक्य आण्णा यादव</span>
+                    <span>श्री. निखील विनोद निकम</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="bal-aagrah" style="color: #F5D76E;background-color: #4A1428;">
+            <strong style="color: #F5D76E;">किलबिल परिवार</strong>
+
+            <div class="bal-family-names">
+                <span>शिवांश,</span>
+                <span>क्रिशा,</span>
+                <span>वैष्णवी,</span>
+                <span>पूर्वा,</span>
+                <span>श्रावणी,</span>
+                <span>ईश्वरी,</span>
+                <span>रुद्रनील,</span>
+                <span>प्रज्योत,</span>
+                <span>अद्वैत,</span>
+                <span>रुद्र,</span>
+                <span>प्रांजली,</span>
+                <span>वृंदा,</span>
+                <span>यश,</span>
+                <span>यशस्वी,</span>
+                <span>गौरी,</span>
+                <span>रिया,</span>
+                <span>पल्लवी,</span>
+                <span>आदिती,</span>
+                <span>निरज,</span>
+                <span>विहान,</span>
+                <span>शिवराज,</span>
+                <span>कादंबरी</span>
+
+            </div>
+        </div>
+
+        <!-- BOX 3 : PRERAK -->
+        <div class="family-member-card" style="background-color: #4A1428;">
+            <strong class="family-card-title" style="color: #F5D76E;">॥ प्रेषक ॥</strong>
+
+            <div class="family-card-content sender-details">
+
+                <p>
+                    <strong>राज अनिल निंबाळकर : 7350672410  </strong>
+
+                </p>
+
+                <p>
+                    <strong>सुरज सुनिल निंबाळकर : 1234567890</strong>
+
+                </p>
+
+            </div>
+        </div>
+
+        </div>
+        </div>
+        <!-- Invitation Cards Downloads Section -->
+        <section class="section cards-section" id="cards" style="background-color: #4A1428 ;">
+            <div class="section-inner" style="background-color: #4A1428;">
+                <div class="section-heading reveal">
+                    <div class="overline"></div>
+
+                    <h3 style="color: #F5D76E;">✦ मंगलमय निमंत्रण ✦</h3>
+                    <h2 style="color: #F5D76E;">विवाह निमंत्रणपत्रिका</h2>
+                    <p style="color: #F5D76E;">पत्रिका पाहण्यासाठी त्यावर टॅप करा किंवा सुंदर आठवण म्हणून जतन करण्यासाठी थेट डाउनलोड करा.</p>
+                </div>
+
+                <div class="card-gallery">
+                    <!-- Card 1: Shubh Vivah -->
+                    <article class="card-tile reveal tilt-card">
+                        <div class="shine-fx"></div>
+                        <div class="card-tile-head">
+                            <h3 style="color: #F5D76E;">शुभ विवाह निमंत्रण पत्र</h3>
+                            <span class="h3" style="color: #F5D76E;">सुप्रिया  &amp; गौरव</span>
+                        </div>
+                        <button class="card-image-button" type="button" onclick="openCard('gold')" aria-label="विवाह कार्ड बड़ा देखें">
+              <img id="goldCard" src="./assets/images/wd.jpg" alt="Shubh Vivah HD Invitation Card" loading="lazy"/>
+            </button>
+                        <div class="tile-actions">
+                            <button class="btn btn-gold" type="button" onclick="downloadCard('gold')">
+                📥 Download Card (HD)
+              </button>
+                            <button class="btn btn-outline" type="button" onclick="openCard('gold')">
+                View Larger ↗
+              </button>
+                        </div>
+                    </article>
+
+
+        </section>
+
+
+
+        <!-- Venue Map Section -->
+        <section class="venue-map-section" id="wedding-location" aria-labelledby="venue-map-title">
+            <div class="venue-map-inner reveal">
+                <div class="venue-map-ornament">✦ 卐 ✦</div>
+                <p class="venue-map-kicker"></p>
+                <h3 style="color: #F5D76E;">विवाह सोहळ्याचे स्थळ</h3>
+                <h2 id="venue-map-title" style="color: #F5D76E;">... मंगल कार्यालय</h2>
+
+                <strong style="color: #F5D76E;">मु.पोस्ट तांदुळवाडी, ता-माळशिरस, जि-सोलापूर</strong>
+                </p>
+                <a class="venue-map-button" href="https://www.google.com/maps/search/?api=1&query=Village+Nokhepur+Post+Basupur+District+Sultanpur+Uttar+Pradesh" target="_blank" rel="noopener noreferrer" aria-label="Find Village Nokhepur on Google Maps" style="color: #F5D76E;">
+          ⌖ &nbsp;  कार्यालयाचे ठिकाण व मार्ग  ↗
+        </a>
+                <div class="venue-map-ornament">✦ 卐 ✦</div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Floating Music Player Ribbon -->
+    <div class="floating-vinyl-player" id="vinylPlayer" onclick="toggleMantra()" title="Click to Play/Pause Aarti">
+        <div class="vinyl-disc" id="vinylDisc">
+            <div class="vinyl-groove"></div>
+            <div class="vinyl-center">ॐ</div>
+        </div>
+        <div class="vinyl-info">
+            <span>गणेश आरती</span>
+            <small id="vinylStatus">Paused</small>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-mark">卐</div>
+        <strong style="color: #F5D76E;">॥ सस्नेह निमंत्रण ॥</strong>
+        <p style="color: #F5D76E;">सुप्रिया आणि गौरव यांच्या शुभविवाह सोहळ्याच्या मंगलमय प्रसंगी आपण उपस्थित राहून वधू-वरांना शुभाशीर्वाद द्यावेत, ही नम्र विनंती.</p>
+        <p class="fineprint" style="color: #F5D76E;">॥ सर्वे भवन्तु सुखिनः सर्वे सन्तु निरामयाः ॥</p>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <!-- Image Lightbox Modal -->
+    <div class="modal" id="cardModal" role="dialog" aria-modal="true" aria-label="कार्ड का बड़ा दृश्य" onclick="modalBackdrop(event)">
+        <div class="modal-inner">
+            <button class="modal-close" type="button" onclick="closeCard()" aria-label="बंद करें">×</button>
+            <img id="modalImage" src="" alt="बड़ा निमंत्रण कार्ड" />
+            <div class="modal-caption" id="modalCaption"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
