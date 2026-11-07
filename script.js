@@ -87,6 +87,7 @@ function toggleAmbience() {
     showToast(isNight ? 'Night Mode' : 'Light Mode');
 }
 
+
 // ==========================================
 // 4. Live Countdown Timer (Target: 02 Dec 2026)
 // ==========================================
@@ -126,7 +127,7 @@ const ctx = canvas.getContext('2d');
 let particles = [];
 
 const coupleImg = new Image();
-coupleImg.src = './assets/images/couple-cartoon.png';
+coupleImg.src = './assets/images/couple-cartoon.webp';
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -327,71 +328,15 @@ window.addEventListener('scroll', () => {
 });
 
 // ==========================================
-// 8. Digital Ashirwad & WhatsApp Direct Wishes
-// ==========================================
-const initialWishes = [
-    { name: 'पं० रवि शर्मा', msg: 'वर-वधू को वैवाहिक जीवन की अनन्त शुभकामनाएँ एवं शुभाशीर्वाद।' },
-    { name: 'दीपक एवं परिवार', msg: 'अमित भाई और भाभी को शादी की बहुत बहुत बधाई!' },
-    { name: 'तिवारी परिवार', msg: 'सदा सुहागन रहो, दोनों कुलों का नाम रोशन करो।' }
-];
-
-const wishesWall = document.getElementById('wishesWall');
-
-function renderWishes() {
-    if (!wishesWall) return;
-    wishesWall.innerHTML = '';
-    initialWishes.forEach((w) => {
-        const bubble = document.createElement('div');
-        bubble.className = 'wish-bubble';
-        bubble.innerHTML = `<strong>${w.name}</strong><span>${w.msg}</span>`;
-        wishesWall.appendChild(bubble);
-    });
-}
-renderWishes();
-
-function submitBlessing() {
-    const name = document.getElementById('guestName').value.trim();
-    const msg = document.getElementById('guestMessage').value.trim();
-
-    if (!name || !msg) {
-        showToast('कृपया अपना नाम और शुभकामना संदेश अवश्य लिखें।');
-        return;
-    }
-
-    initialWishes.unshift({ name, msg });
-    renderWishes();
-    document.getElementById('guestName').value = '';
-    document.getElementById('guestMessage').value = '';
-
-    showToast('आपका आशीर्वाद संदेश सफलतापूर्वक जुड़ गया है। धन्यवाद!');
-}
-
-function sendWhatsAppWish() {
-    const name = document.getElementById('guestName').value.trim() || 'शुभचिंतक';
-    const customMsg = document.getElementById('guestMessage').value.trim();
-
-    const defaultWish = `चि० अमित एवं आयु० शिवांगी को शुभ विवाह की अनन्त शुभकामनाएँ एवं हार्दिक आशीर्वाद! 💐✨\n\n— प्रेषक: ${name}`;
-    const finalMsg = customMsg ? `${customMsg}\n\n— प्रेषक: ${name}` : defaultWish;
-
-    const groomNumber = '919454379145';
-    const waUrl = `https://api.whatsapp.com/send?phone=${groomNumber}&text=${encodeURIComponent(finalMsg)}`;
-    window.open(waUrl, '_blank');
-}
-
-// ==========================================
 // 9. Card Modal & Direct Downloads
 // ==========================================
 const cards = {
     gold: {
-        src: './assets/images/wd.jpg',
+        src: './assets/images/wd1.jpg',
         name: 'Supriya & Gaurav Wedding_Invitation card',
         caption: 'शुभ विवाह निमंत्रण पत्र '
     },
-    celebrations: {
-        src: './assets/images/preetbhoj-card.png',
-        name: 'Amit_Tiwari_Bahubhoj_Card.png',
-        caption: 'अखण्ड रामायण एवं बहूभोज-प्रीतिभोज पत्रिका'
-    }
+
 };
 
 function downloadCard(which) {
@@ -439,10 +384,10 @@ function showToast(message) {
 }
 
 async function shareInvite() {
-    const text = '॥ श्री गणेशाय नमः ॥\n\nआप सादर आमंत्रित हैं अमित संग शिवांगी के शुभ वैवाहिक समारोह में।\n\n• ०२ दिसम्बर २०२६: शुभ विवाह\n• ०४ दिसम्बर २०२६: अखण्ड रामायण पाठ\n• ०५ दिसम्बर २०२६: बहूभोज एवं प्रीतिभोज (सायं ६ बजे)\n\nस्थल: ग्राम नोखेपुर, पोस्ट बासूपुर, जिला सुल्तानपुर (उ०प्र०)\n\nकृप्या पधारकर अपना स्नेहिल आशीर्वाद प्रदान करें।';
+    const text = '॥ श्री गणेशाय नमः ॥\n\nआपणांस सस्नेह आमंत्रित करीत आहोत, सुप्रिया आणि गौरव यांच्या शुभविवाह सोहळ्यास!\n\n• 10.12.2026: शुभ विवाह\n\nपत्ता : मु.पोस्ट तांदुळवाडी ता-माळशिरस, जि-सोलापूर\n\nआपण उपस्थित राहून वधू-वरांना प्रेमळ आशीर्वाद द्यावेत, ही आग्रहाची विनंती.';
     if (navigator.share) {
         try {
-            await navigator.share({ title: 'Amit Weds Shivangi | Wedding Invitation', text, url: window.location.href });
+            await navigator.share({ title: 'Supriya 卐 Gaurav  | Wedding Invitation', text, url: window.location.href });
         } catch (e) {
             if (e.name !== 'AbortError') copyInvite(text);
         }
@@ -454,9 +399,9 @@ async function shareInvite() {
 async function copyInvite(text) {
     try {
         await navigator.clipboard.writeText(text);
-        showToast('निमंत्रण संदेश कॉपी हो गया है।');
+        showToast('निमंत्रण संदेश कॉपी झाला आहे.');
     } catch (e) {
-        showToast('शेयर करने के लिए ब्राउज़र मेनू का उपयोग करें।');
+        showToast('निमंत्रण शेअर करण्यासाठी ब्राउझर मेनूमधील शेअर पर्याय निवडा.');
     }
 }
 
