@@ -579,6 +579,59 @@ body.invite-locked {
 }
 
 
+/* ===== FIX CARD CENTER : 600px TO 1024px ===== */
+
+@media screen and (min-width: 600px) and (max-width: 1024px) {
+    #cards {
+        width: 100%;
+        overflow-x: hidden;
+    }
+    #cards .section-inner {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding-left: 20px;
+        padding-right: 20px;
+        box-sizing: border-box;
+    }
+    #cards .card-gallery {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        box-sizing: border-box;
+    }
+    #cards .card-tile {
+        position: relative;
+        width: 100% !important;
+        max-width: 460px !important;
+        min-width: 0 !important;
+        margin: 0 auto !important;
+        left: auto !important;
+        right: auto !important;
+        transform: none !important;
+        box-sizing: border-box;
+    }
+    #cards .card-image-button,
+    #cards .card-image-button img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        box-sizing: border-box;
+    }
+    #cards .tile-actions {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+    }
+}
+
+
 /* Live Countdown Timer */
 
 .countdown-section {
