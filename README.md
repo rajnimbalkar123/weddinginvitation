@@ -1,2 +1,1 @@
-# VeereDiWwedding
-Amit Weds Shivangi 
+Supriya Weds Gaurav
