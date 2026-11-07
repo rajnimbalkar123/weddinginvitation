@@ -383,11 +383,27 @@ function showToast(message) {
     toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
 }
 
+
+
 async function shareInvite() {
-    const text = '॥ श्री गणेशाय नमः ॥\n\nआपणांस सस्नेह आमंत्रित करीत आहोत, सुप्रिया आणि गौरव यांच्या शुभविवाह सोहळ्यास!\n\n• 10.12.2026: शुभ विवाह\n\nपत्ता : मु.पोस्ट तांदुळवाडी ता-माळशिरस, जि-सोलापूर\n\nआपण उपस्थित राहून वधू-वरांना प्रेमळ आशीर्वाद द्यावेत, ही आग्रहाची विनंती.';
+    const shortUrl = 'https://bit.ly/4kJ6gMq';
+
+    const text = '॥ श्री गणेशाय नमः ॥\n\n' +
+        '💐 आपणांस सस्नेह आमंत्रित करीत आहोत! 💐\n\n' +
+        'चि.सौ.कां. सुप्रिया आणि चि. गौरव यांच्या शुभविवाह सोहळ्यास!\n\n' +
+        '📅 10.12.2026 : शुभ विवाह\n\n' +
+        '📍 पत्ता : मु.पोस्ट तांदुळवाडी, ता. माळशिरस, जि. सोलापूर.\n\n' +
+        '✨ आमची सुंदर डिजिटल लग्नपत्रिका पाहण्यासाठी खालील लिंकवर क्लिक करा!\n\n' +
+        '👇 लग्नपत्रिका येथे पहा 👇\n' +
+        shortUrl + '\n\n' +
+        'आपण उपस्थित राहून वधू-वरांना प्रेमळ आशीर्वाद द्यावेत, ही आग्रहाची विनंती. 🙏';
+
     if (navigator.share) {
         try {
-            await navigator.share({ title: 'Supriya 卐 Gaurav  | Wedding Invitation', text, url: window.location.href });
+            await navigator.share({
+                title: 'Supriya 卐 Gaurav | Wedding Invitation',
+                text: text
+            });
         } catch (e) {
             if (e.name !== 'AbortError') copyInvite(text);
         }
