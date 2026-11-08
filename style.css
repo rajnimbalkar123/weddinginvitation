@@ -1391,6 +1391,13 @@ body.night-mode .hindi-welcome p {
    KILBIL FAMILY - GOLDEN HOVER EFFECT
 ===================================== */
 
+.bal-aagrah {
+    border: 1px solid #F5D76E !important;
+    border-style: solid !important;
+    outline: none !important;
+    box-shadow: none;
+}
+
 .bal-family-names {
     display: flex;
     flex-wrap: wrap;
