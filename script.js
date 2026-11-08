@@ -89,7 +89,7 @@ function toggleAmbience() {
 
 function printPatrika() {
 
-    const imageUrl = './assets/images/wedding_card.jpg';
+    const imageUrl = './assets/images/wd1.jpg';
 
     const printWindow = window.open('', '_blank');
 
@@ -409,7 +409,7 @@ window.addEventListener('scroll', () => {
 // ==========================================
 const cards = {
     gold: {
-        src: './assets/images/wedding_card.jpg',
+        src: './assets/images/wd1.jpg',
         name: 'Supriya & Gaurav Wedding_Invitation card',
         caption: 'शुभ विवाह निमंत्रण पत्र '
     },
