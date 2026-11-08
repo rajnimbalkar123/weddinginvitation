@@ -87,7 +87,84 @@ function toggleAmbience() {
     showToast(isNight ? 'Night Mode' : 'Light Mode');
 }
 
+function printPatrika() {
 
+    const imageUrl = './assets/images/wd1.jpg';
+
+    const printWindow = window.open('', '_blank');
+
+    if (!printWindow) {
+        alert('Please allow pop-ups to print the invitation.');
+        return;
+    }
+
+    printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>सुप्रिया आणि गौरव - शुभविवाह पत्रिका</title>
+<base href="https://weddinginvitation.rajnimbalkar.workers.dev/">
+            <style>
+                @page {
+                    size: A4;
+                    margin: 10mm;
+                }
+
+                html, body {
+                    margin: 0;
+                    padding: 0;
+                    width: 100%;
+                    height: 100%;
+                }
+
+                body {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                img {
+                    max-width: 100%;
+                    max-height: 277mm;
+                    width: auto;
+                    height: auto;
+                    object-fit: contain;
+                }
+
+                @media print {
+                    body {
+                        -webkit-print-color-adjust: exact;
+                        print-color-adjust: exact;
+                    }
+                }
+            </style>
+        </head>
+
+        <body>
+            <img id="printImage" src="${imageUrl}">
+        </body>
+        </html>
+    `);
+
+    printWindow.document.close();
+
+    const img = printWindow.document.getElementById('printImage');
+
+    img.onload = function() {
+        printWindow.focus();
+        printWindow.print();
+    };
+
+    img.onerror = function() {
+        alert('Wedding Patrika image could not be loaded.');
+        printWindow.close();
+    };
+
+    if (img.complete && img.naturalWidth > 0) {
+        printWindow.focus();
+        printWindow.print();
+    }
+}
 // ==========================================
 // 4. Live Countdown Timer (Target: 02 Dec 2026)
 // ==========================================

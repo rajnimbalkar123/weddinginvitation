@@ -463,6 +463,47 @@ body.invite-locked {
 }
 
 
+/* ===== PRINT ONLY WEDDING PATRika IMAGE ===== */
+
+@media print {
+    @page {
+        size: A4;
+        margin: 10mm;
+    }
+    /* संपूर्ण Website लपवा */
+    body * {
+        visibility: hidden !important;
+    }
+    /* फक्त Wedding Patrika Image दाखवा */
+    #goldCard {
+        visibility: visible !important;
+        display: block !important;
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        width: auto !important;
+        height: auto !important;
+        max-width: 190mm !important;
+        max-height: 277mm !important;
+        object-fit: contain !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+    html,
+    body {
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        background: white !important;
+    }
+}
+
+
 /* Hero Poster Showcase */
 
 .poster-hero {
@@ -1221,6 +1262,44 @@ body.night-mode .hindi-welcome p {
         animation: none !important;
         transition: none !important;
     }
+}
+
+.relatives-names {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 15px;
+    width: 100%;
+}
+
+.relatives-column {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.relatives-column:first-child {
+    text-align: left;
+    align-items: flex-start;
+}
+
+.relatives-column:last-child {
+    text-align: center;
+    align-items: flex-end;
+}
+
+.relatives-column span {
+    display: block;
+    width: 100%;
+    line-height: 1.6;
+}
+
+.relatives-column:first-child span {
+    text-align: left
+}
+
+.relatives-column:last-child span {
+    text-align: center
 }
 
 
