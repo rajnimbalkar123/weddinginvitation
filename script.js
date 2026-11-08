@@ -89,7 +89,7 @@ function toggleAmbience() {
 
 function printPatrika() {
 
-    const imageUrl = './assets/images/wd1.jpg';
+    const imageUrl = './assets/images/wedding_card.jpg';
 
     const printWindow = window.open('', '_blank');
 
@@ -409,7 +409,7 @@ window.addEventListener('scroll', () => {
 // ==========================================
 const cards = {
     gold: {
-        src: './assets/images/wd1.jpg',
+        src: './assets/images/wedding_card.jpg',
         name: 'Supriya & Gaurav Wedding_Invitation card',
         caption: 'शुभ विवाह निमंत्रण पत्र '
     },
@@ -470,7 +470,7 @@ async function shareInvite() {
         '🌸 चि.सौ.कां. सुप्रिया अनिल निंबाळकर आणि चि. गौरव कृष्णदेव शिंदे यांच्या शुभविवाह सोहळ्यास!\n\n' +
         '✨ शुभ विवाह : १० डिसेंबर २०२६ \n\n' +
         '✨ लग्नाचा मुहूर्त  : दुपारी १२.२० मिनटे  \n\n' +
-        '📍 पत्ता : मु.पोस्ट तांदुळवाडी, ता. माळशिरस, जि. सोलापूर.\n\n' +
+        '📍 पत्ता : श्री स्वामी समर्थ मंगल कार्यालय, सातारा-पंढरपूर रोड, मु.पोस्ट तांदुळवाडी, ता.माळशिरस, जि.सोलापूर.\n\n' +
         '✨ आमची सुंदर डिजिटल लग्नपत्रिका पाहण्यासाठी खालील लिंकवर क्लिक करा!\n\n' +
         '👇 लग्नपत्रिका येथे पहा 👇\n' +
         shortUrl + '\n\n' +
